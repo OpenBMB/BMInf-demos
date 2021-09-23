@@ -5,3 +5,27 @@ BMInf(Big Model Inference)-Demos is three examples designed according to three m
 + **Generate Story.** It is an example based on CPM1 model. You only need to write the beginning of a paragraph, and it can create a beautiful essay for you。
 + **Dialogue.** It is an example we created based on EVA2 model. Here, you can talk freely with the machine.
 
+# **Demonstration**
++ Fill Blank 
+<div  align="center">    
+<img src="https://github.com/OpenBMB/BMInf-demos/tree/master/images/demo1.jpg" width = "800" height = "400" align=center />
+</div>
+
+
++ Generate Story
+
+<div  align="center">    
+<img src="https://github.com/OpenBMB/BMInf-demos/tree/master/images/demo2.jpg" width = "800" height = "400" align=center />
+</div>
+
++ Dialogue
+
+<div  align="center">    
+<img src="https://github.com/OpenBMB/BMInf-demos/tree/master/images/demo3.jpg" width = "800" height = "400" align=center />
+</div>
+
+
+# **Install**
+
++ From docker: 
+Launch later
