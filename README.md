@@ -8,20 +8,20 @@ BMInf(Big Model Inference)-Demos is three examples designed according to three m
 # **Demonstration**
 + Fill Blank 
 <div  align="center">    
-<img src="https://github.com/OpenBMB/BMInf-demos/tree/master/images/demo1.jpg" width = "800" height = "400" align=center />
+<img src="./images/demo1.jpg" width = "800" height = "400" align=center />
 </div>
 
 
 + Generate Story
 
 <div  align="center">    
-<img src="https://github.com/OpenBMB/BMInf-demos/tree/master/images/demo2.jpg" width = "800" height = "400" align=center />
+<img src="./images/demo2.jpg" width = "800" height = "400" align=center />
 </div>
 
 + Dialogue
 
 <div  align="center">    
-<img src="https://github.com/OpenBMB/BMInf-demos/tree/master/images/demo3.jpg" width = "800" height = "400" align=center />
+<img src="./images/demo3.jpg" width = "800" height = "400" align=center />
 </div>
 
 
