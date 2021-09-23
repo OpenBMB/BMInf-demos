@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.details{
+    margin-top: 10px;
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    display: flex;
+    // background-color: burlywood;
+    flex-direction: column;
+}
+.head{
+    padding: 0 20px;
+    background-color: white;
+}
+.header{
+    width: 100%;
+    height:265px;
+    background-color: #fff;
+    box-sizing: border-box;
+    
+    border-bottom: 1px solid #CCCCCC;
+    .head-title{
+        width: 100%;
+        box-sizing: border-box;
+        padding:0 10px;
+        text-align: left;
+        font-size: 36px;
+        color: #333;
+        margin-top: 20px;
+        height: 28px;
+        line-height: 48px;
+        height: 48px;
+    }
+    .type{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 16px;
+        span:nth-of-type(1){
+            font-family: Helvetica Neue,Helvetica,tahoma,Arial,PingFang SC,Hiragino Sans GB,STHeiti,Microsoft YaHei,WenQuanYi Micro Hei,"sans-serif";
+            line-height: 1.5;
+            font-size: 14px;
+            color: #999;
+            margin-right: 10px;
+        }
+        span:nth-of-type(2){
+            height: 26px;
+            display: flex;
+            align-items: center;
+            padding: 3px 6px;
+            border-radius: 20px;
+            border: 1px solid #2490f4;
+            color: #2490f4;
+            font-family: Helvetica Neue,Helvetica,tahoma,Arial,PingFang SC,Hiragino Sans GB,STHeiti,Microsoft YaHei,WenQuanYi Micro Hei,"sans-serif";
+            line-height: 1.5;
+            font-size: 14px;
+            
+            margin-right: 10px;
+        }
+      
+    }
+    .ying{
+        width: 100%;
+        display: flex;
+        margin: 16px;
+        span:nth-of-type(1){
+            font-family: Helvetica Neue,Helvetica,tahoma,Arial,PingFang SC,Hiragino Sans GB,STHeiti,Microsoft YaHei,WenQuanYi Micro Hei,"sans-serif";
+            line-height: 1.5;
+            font-size: 14px;
+            color: #999;
+            margin-right: 10px;
+        }
+        span:nth-of-type(2){
+            font-family: Helvetica Neue,Helvetica,tahoma,Arial,PingFang SC,Hiragino Sans GB,STHeiti,Microsoft YaHei,WenQuanYi Micro Hei,"sans-serif";
+            line-height: 1.5;
+            font-size: 14px;
+            color: black;
+           border: 0;
+        }
+    }
+    .btn{
+        width: 100%;
+        display: flex;
+        
+        box-sizing: border-box;
+        padding:  0 10px;
+        button{
+            cursor: pointer;
+            height: 34px;
+           background-color: #14cba2;
+           border-radius: 30px;
+            padding: 6px 30px;
+            color: white;
+            border: 0;
+        }
+    }
+}
+.content{
+    width: 100%;
+    height: 540px;
+    background-color: #fff;
+    overflow: scroll;
+    overflow-x: hidden;
+    box-sizing: border-box !important;
+    padding:0 0 0 30px;
+    .cont{
+        
+        width: 100%;
+        // height: 100%;
+        // background-color: red;
+    }
+}

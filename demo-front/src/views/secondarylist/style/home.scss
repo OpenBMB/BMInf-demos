@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  input,textarea,a{
+    outline: none;
+    border: 0;
+    text-decoration: none !important;
+    color: black;
+  }
+  .home{
+    
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .head{
+    width: 92% !important;
+    height: 80px;
+  }
+  .content{
+   flex:1;
+   display: flex;
+  }
+  .nav{
+    //  width: 225px;
+     box-shadow: 2px 0 20px 0 rgba(0,0,0,0.10);
+     position: absolute;
+      top: 0;
+      z-index: 1000;
+      height: 100%;
+    // height: 100%; 
+    /* background-color:#1A53B1; */
+  }
+  /deep/ .el-icon-arrow-down:before{
+    content:"\e791";
+  }
+  /deep/ .el-submenu.is-opened>.el-submenu__title .el-submenu__icon-arrow{
+    transform: rotateZ(90deg);
+  }
+  /deep/ .el-submenu__title>span{
+    font-size: 14px;
+    margin-left: 8px;
+  font-family: Source Han Sans CN;
+  font-weight: 600;
+  color: #030B1D;
+  }
+  /deep/ .is-active{
+    background-color: #E8EEFC !important;
+  }
+  /deep/ .el-menu{
+    border-right: none;
+  }
+  /deep/ .el-menu-item-group__title{
+    padding: 0;
+  }
+  .nav>>>.el-submenu .el-menu-item{
+    min-width: 224px !important;
+  }
+  /deep/ .el-menu-vertical-demo{
+    // height: 100%;
+    box-sizing: border-box;
+    padding-top: 24px;
+  }
+  /deep/ .el-submenu__title{
+    width: 224px;
+  }
+  /deep/ .el-menu-item{
+    padding-left: 68px !important;
+    text-align: left;
+  }
+  .el-icon-cpu:before{
+    color: #909399;
+  }
+  .cont{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-left: 226px;
+    // background-color: #F7FAFF;
+    .breadcrumb{
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    padding: 0 18px;
+    box-sizing: border-box;
+    background: #FFFFFF;
+  }
+    
+  }
+  
+  // 面包屑
+  
+  /deep/ .bread1>span:nth-of-type(1){
+    // color: red !important;
+    font-size: 12px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  
+  }
+  /deep/ .el-breadcrumb__separator{
+    display: none;
+  }
+  /deep/ .bread2>span:nth-of-type(1){
+    font-size: 12px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  color: #2F3033 !important;
+  }

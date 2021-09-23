@@ -1,0 +1,462 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.jobmanagement{
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+/* 头部 */
+.header{
+    display: flex;
+    justify-content: space-between;
+}
+
+// 新建 
+/deep/ .el-popper{
+ 
+  text-align: left;
+  padding: 6px;
+}
+/deep/ .lala .el-popper{
+  top:210px !important;
+  text-align: left;
+  padding: 6px;
+}
+.xinjian{
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 24px 42px 0 42px;
+  width: 100%;
+  .btn{
+    display: flex;
+    width: 100%;
+
+    align-items: center;
+    margin-top: 10px;
+   /deep/ .el-input__suffix{
+     display: flex;
+     align-items: center;
+   }
+   /deep/ .el-input__inner{
+     display: flex;
+     align-items: center;
+   }
+   /deep/ .el-select{
+    width: 100% !important;
+   }
+    /deep/ .el-input>input{
+      margin-left: 10px;
+      line-height: 28px;
+       width: 100% !important;
+        height: 28px;
+         border-radius: 0;
+        font-size: 12px;
+        font-family: Source Han Sans CN;
+       font-weight: 400;
+  
+}
+    
+   
+    >span{
+      display: block;
+      width: 30%;
+      text-align: left;
+      margin: 0 10px 0 0;
+      color: #808080;
+    }
+  }
+  
+   .can{
+       color: #808080;
+    }
+    .cs{
+      margin-top: 10px;
+      border: 1px solid #DCDFE6;
+      box-sizing: border-box;
+      padding:  10px 15px 10px 0;
+      width: 100%;
+      height: 550px;
+      overflow: scroll;
+      overflow-x: hidden;
+    }
+  .canshu{
+    box-sizing: border-box;
+ 
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    .can-btn{
+      width: 630px;
+      height: 28px;
+      box-sizing: border-box;
+      padding:0 15px;
+     font-size: 12px;
+      font-family: Source Han Sans CN;
+      font-weight: 400;
+      border: 1px solid #DCDFE6;
+    }
+    >span{
+      width: 30%;
+      text-indent:2em;
+      text-align: left;
+      // margin-right: 10px;
+    
+      color: #808080;
+    }
+  }
+  
+}
+.cx{
+  outline: none;
+  width: 630px;
+  height: 28px;
+  box-sizing: border-box;
+  padding:0 15px;
+ font-size: 12px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  border: 1px solid #DCDFE6;
+}
+.footer{
+  position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+    >button:nth-of-type(1){
+      width: 56px;
+      height: 28px;
+      background: #FFFFFF;
+      border: 1px solid #DCDFE6;
+      opacity: 1;
+      border-radius: 2px;
+      margin-right:  20px;
+    }
+    >button:nth-of-type(2){
+      width: 56px;
+      height: 28px;
+      background: #145AFE;
+      border: 0;
+      opacity: 1;
+      border-radius: 2px;
+      margin-right:  47px;
+      color: white;
+    }
+  }
+/deep/ .el-input{
+  
+      display: flex;
+      align-items: center;
+     
+}
+input::-webkit-input-placeholder{
+      color: #C8CBD2;
+    }
+    .can{
+      margin-top: 10px;
+      width: 100%;
+        text-align: left;
+    }
+/deep/ .el-button>span{
+  width: 100px;
+}
+.btn3{
+        
+            width: 140px;
+            height: 32px;
+          
+          display: flex;
+          height: 56px;
+          align-items: center;
+          justify-content: center;
+          input{
+            width: 288px;
+            height: 38px;
+            margin-top: 9px;
+            box-sizing: border-box;
+            border: 1px solid #DDDFE7;
+            border-right: 0;
+            box-sizing: border-box;
+            padding: 0 10px;
+          }
+          button{
+            cursor: pointer;
+            width: 58px;
+             height: 38px;
+            margin-top: 9px;
+            background: #2055F4;
+            color: white;
+            border: 0;
+          }
+        }
+// 搜索
+      .serach{
+        width: 100%;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .serach-title{
+          font-size: 14px;
+          font-family: Source Han Sans CN;
+          font-weight: bold;
+          color: #2F3033;
+        }
+        .btn1{
+          
+          input{
+            width: 140px;
+            height: 40px;
+            box-sizing: border-box;
+            padding:0 10px;
+            margin-left: 10px;
+            margin-top: 10px;
+            border: 1px solid #DFDFE3;
+            border-radius: 4px;
+          }
+          /deep/ .el-select{
+            margin-left: 10px;
+            width: 140px;
+            height: 32px;
+            background: #FFFFFF;
+          }
+        }
+        .btn2{
+          @extend .btn1;
+          margin-left: 10px;
+        }
+        
+    }
+    .cell{
+      width: 42px;
+      height: 24px;
+      border: 1px solid #DFDFE3;
+      opacity: 1;
+    }
+    /deep/ .el-button{
+      width: 42px;
+      height: 24px;
+      border: 1px solid #DFDFE3;
+      color: red;
+      border-radius: 0;
+    }
+
+      //   /* 分页 */
+    .fenye{
+      width: 100%;
+      height: 50px;
+      background: #FFFFFF;
+      display: flex;
+      align-items: center;
+      button{
+        margin-left: 10px;
+        width: 50px;
+        height: 24px;
+        background: #FFFFFF;
+        border: 1px solid #DCDFE6;
+      }
+    }
+    .content{
+      margin-top: 20px;
+    }
+    /deep/ .el-table__row{
+      height: 65px;
+      width: 50%;
+    }
+
+
+    /deep/ .el-pagination{
+      width: 92%;
+      display: flex;
+      justify-content: flex-end;
+    }
+    // /deep/ .el-pagination__jump{
+     
+    // }
+  /deep/ .el-pagination.is-background .el-pager li{
+      background: white ;
+      font-size: 14px;
+      font-family: SourceHanSansCN-Normal, SourceHanSansCN;
+      font-weight: 400;
+      color: #272A31;
+      border: 1px solid #ECEEF5 ;
+
+  }
+  /deep/ .el-pagination.is-background .btn-next{
+      background: white ;
+      border: 1px solid #ECEEF5 !important;
+  }
+  /deep/ .el-pagination.is-background .btn-prev{
+       background: white ;
+      border: 1px solid #ECEEF5 !important;
+  }
+  /deep/ .el-pagination.is-background .el-pager li:not(.disabled).active{
+      background: #409EFF !important;
+      color: #FFF !important;
+  }
+  .tiao{
+    width: 74px;
+     height: 28px;
+     border-radius: 2px;
+     border: 1px solid #DCDFE6;
+     text-align: center;
+     font-size: 14px;
+     font-family: SourceHanSansCN-Regular, SourceHanSansCN;
+     font-weight: 400;
+     color: #272A31;
+     box-sizing: border-box;
+     display: flex;
+     justify-content: center;
+}
+/deep/ .el-pagination span:not([class*=suffix]){
+  display: flex;
+}
+/deep/ .el-table::before{
+  height: 0px !important;
+}
+// 服务管理
+.btn{
+  >textarea{
+    width: 100% !important;
+height: 80px;
+border: 1px solid #DCDFE6;
+margin-left: 15px;
+resize: none;
+box-sizing: border-box;
+padding: 10px 15px;
+  }
+}
+
+textarea::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #C8CBD2;
+}
+//UI组件
+.zujian{
+  width: 100%;
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+  span{
+    width: 25%;
+    text-align: right;
+    margin: 0 10px 0 0;
+      color: #808080;
+  }
+  >input{
+    width: 285px;
+    height: 28px;
+    border: 1px solid #DCDFE6;
+    box-sizing: border-box;
+    padding: 0 15px;
+  }
+  >button{
+    margin-left: 10px;
+    width: 56px;
+      height: 28px;
+      border: 1px solid #DCDFE6;
+      background: white;
+      border-radius: 2px;
+      color: #145AFE;
+  }
+}
+
+// 滑块
+/deep/ .el-switch{
+  width: 58px;
+height: 24px;
+margin-left: 5px;
+}
+/deep/ .tableScopeSwitch .el-switch__label {
+    position: absolute;
+    display: none;
+    color: #fff;
+}
+/*打开时文字位置设置*/
+/deep/ .tableScopeSwitch .el-switch__label--right {
+    z-index: 1;
+    right: 6px;    /*不同场景下可能不同，自行调整*/
+    display: block;
+}
+/*关闭时文字位置设置*/
+/deep/ .tableScopeSwitch .el-switch__label--left {
+    z-index: 1;
+    left: 6px;    /*不同场景下可能不同，自行调整*/
+    display: block;
+}
+/*显示文字*/
+/deep/ .tableScopeSwitch .el-switch__label.is-active {
+    display: none;
+}
+/deep/ .tableScopeSwitch.el-switch .el-switch__core,
+.el-switch .el-switch__label {
+    width: 75px !important;    /*开关按钮的宽度大小*/
+}
+
+.tishi{
+  height: 15px !important;
+  width: 15px !important;
+  // display: flex;
+  line-height: 15px;
+  font-size: 12px;
+  padding: 0 0 0px 3px;
+  text-align: center;
+  box-sizing: border-box;
+  border:1px solid #F0F0F0;
+  // color: #F0F0F0;
+  border-radius: 50%;
+}
+
+// 富文本
+/deep/ .tox-tinymce{
+  width: 100% !important;
+  margin-left: 10px;
+
+}
+.bianji{
+ /deep/ .tox-tinymce{
+  width: 100% !important;
+  margin-left: 10px;
+    height: 500px !important;
+  }
+}
+/deep/ .tox .tox-silver-sink .tox-tinymce-aux{
+  z-index: 10000 !important;
+}
+/deep/ .tox.tox-tinymce.tox-fullscreen{
+  width: 100% !important;
+  height: 100% !important;
+}
+.tox-tinymce-aux{
+  z-index: 10000 !important;
+}
+
+
+//
+/deep/ .el-drawer{
+  width: 50% !important;
+}
+
+
+input[type=number] {
+  -moz-appearance:textfield;
+}
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+

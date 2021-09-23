@@ -1,0 +1,169 @@
+.text{
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    // 搜索
+      .serach{
+        width: 100%;
+        height: 56px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        .serach-title{
+          font-size: 14px;
+          font-family: Source Han Sans CN;
+          font-weight: bold;
+          color: #2F3033;
+        }
+        .btn1{
+          /deep/ .el-select{
+            margin-left: 10px;
+            width: 140px;
+            height: 32px;
+            background: #FFFFFF;
+           
+          }
+        }
+        .btn2{
+          @extend .btn1;
+          margin-left: 10px;
+        }
+        .btn3{
+          @extend .btn2;
+          
+          display: flex;
+          height: 56px;
+          align-items: center;
+          justify-content: center;
+          input{
+            width: 288px;
+            height: 38px;
+            margin-top: 9px;
+            box-sizing: border-box;
+            border: 1px solid #DDDFE7;
+            border-right: 0;
+            box-sizing: border-box;
+            padding: 0 10px;
+          }
+          button{
+              cursor: pointer;
+            width: 58px;
+             height: 38px;
+            margin-top: 9px;
+            background: #2055F4;
+            color: white;
+            border: 0;
+          }
+        }
+    }
+    // 卡片
+    .card{
+    //  flex:1;
+     height: 760px;
+     display: flex;
+     justify-content: flex-start;
+      align-content: flex-start;
+      flex-wrap: wrap;
+      overflow: scroll;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      .tishi{
+        width: 100%;
+        height: 100%;
+      }
+      .cont{
+        width: 24%;
+        height: 180px;
+        margin: 8px 8px 8px 0;
+        background: #FFFFFF;
+        border: 1px solid rgba(220, 223, 230, 0.30196078431372547);
+        box-shadow: 0px 3px 6px rgba(220, 223, 230, 0.3);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        box-sizing: border-box;
+        padding: 16px;
+        .title{
+          font-size: 14px;
+          font-family: Source Han Sans CN;
+          font-weight: bold;
+          color: #2F3033;
+        }
+        .describe{
+          width: 100%;
+          margin-top: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+            .des-left{
+              display: flex;
+              
+                margin-right: 6px;
+                .des-l-l{
+                  height: 20px;
+                  line-height: 20px;
+                  background: #52AFFF;
+                  font-size: 12px;
+                  box-sizing: border-box;
+                  padding-left: 3px;
+                  font-family: Source Han Sans CN;
+                  font-weight: 400;
+                  color: #FFFFFF;
+                }
+                .des-r-r{
+                   width: 0;
+                    height: 0;
+                    border-width: 10px;
+                    border-style: solid;
+                    border-color: #52AFFF transparent #52AFFF #52AFFF;
+                }
+            }
+            .des-right{
+              width: 60%;
+              flex: 1;
+              text-align: left;
+              font-size: 12px;
+              font-family: Source Han Sans CN;
+              font-weight: 400;
+              line-height: 14px;
+              color: #808080;
+              white-space:nowrap;
+              overflow:hidden;
+              text-overflow:ellipsis;
+            }
+        }
+        .content{
+          text-align: left;
+          width: 100%;
+          margin-top: 15px;
+          word-break: break-all;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 2;
+          overflow: hidden;
+          font-size: 14px;
+          font-family: Source Han Sans CN;
+          font-weight: 400;
+          color: #2F3033;
+        }
+        .button{
+          margin-top: 20px;
+          button{
+              cursor: pointer;
+            width: 80px;
+            height: 28px;
+            background: #FFFFFF;
+            border: 1px solid #145AFE;
+            font-size: 12px;
+            font-family: Source Han Sans CN;
+            font-weight: 400;
+            color: #145AFE;
+            box-shadow: 0px 0px 2px rgba(20,90,254, 1);
+          }
+        }
+      }
+    }
+  }
