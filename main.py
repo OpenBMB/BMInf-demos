@@ -42,8 +42,8 @@ def model_load():
     elif key == 3 and lock.locked() == False and lock_model.locked() == False:
         lock_model.acquire()
         model = None
-        print('loading eva2')
-        model = bminf.models.EVA2()
+        print('loading eva')
+        model = bminf.models.EVA()
         data={}
         data['code']=200
         data['message']='success'
