@@ -36,21 +36,20 @@ def model_load():
             print('loading cpm1')
             model = bminf.models.CPM1()
             lock.release()
-            return jsonify({'code':200,'message':'success'})
         elif key == 2:
             lock.acquire()
             model = None
             print('loading cpm2')
             model = bminf.models.CPM2()
             lock.release()
-            return jsonify({'code':200,'message':'success'})
         elif key == 3:
             lock.acquire()
             model = None
             print('loading eva')
             model = bminf.models.EVA()
             lock.release()
-            return jsonify({'code':200,'message':'success'})
+        current_key = key
+        return jsonify({'code':200,'message':'success'})
         
 
 @app.route('/api/gpuinfo',methods=['GET'])
