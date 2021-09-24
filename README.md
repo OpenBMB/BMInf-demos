@@ -42,8 +42,3 @@ Visit http://localhost:8000/ with your browser.
 <img src="./images/demo3.jpg" width = "800" height = "400" align=center />
 </div>
 
-
-# **Install**
-
-+ From docker: 
-Launch later
