@@ -13,6 +13,7 @@ CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__, static_url_path="", static_folder="statics")
 
 model = None
+current_key = None
 #lock methods
 lock = threading.Lock()
 
@@ -20,73 +21,70 @@ lock = threading.Lock()
 def model_load():
     res = request.args.get('key')
     key = int(res)
-    global model
-    if key == 1 and lock.locked() == False:
-        lock.acquire()
-        model = None
-        print('loading cpm1')
-        model = bminf.models.CPM1()
-        data={'code':200,'message':'success'}
-        lock.release()
-        return jsonify(data)
-    elif key == 2 and lock.locked() == False:
-        lock.acquire()
-        model = None
-        print('loading cpm2')
-        model = bminf.models.CPM2()
-        data={'code':200,'message':'success'}
-        lock.release()
-        return jsonify(data)
-    elif key == 3 and lock.locked() == False:
-        lock.acquire()
-        model = None
-        print('loading eva')
-        model = bminf.models.EVA()
-        data={'code':200,'message':'success'}
-        lock.release()
-        return jsonify(data)
-    else:
+    
+    global model, current_key
+
+    if lock.locked():
         data={'code':201,'message':'sorry，此模型正在被其他人独霸，请稍后再试！'}
         return jsonify(data),201 
+    else:
+        if key == current_key:
+            return jsonify({'code':200,'message':'success'})
+        if key == 1:
+            lock.acquire()
+            model = None
+            print('loading cpm1')
+            model = bminf.models.CPM1()
+            lock.release()
+            return jsonify({'code':200,'message':'success'})
+        elif key == 2:
+            lock.acquire()
+            model = None
+            print('loading cpm2')
+            model = bminf.models.CPM2()
+            lock.release()
+            return jsonify({'code':200,'message':'success'})
+        elif key == 3:
+            lock.acquire()
+            model = None
+            print('loading eva')
+            model = bminf.models.EVA()
+            lock.release()
+            return jsonify({'code':200,'message':'success'})
+        
 
 @app.route('/api/gpuinfo',methods=['GET'])
 def gpu_info():
     rate = gpuinfo.gpu_info()
-    data={'code':200,'message':'success','data':rate}
-    return jsonify(data)
+    return jsonify({'code':200,'message':'success','data':rate})
 
 @app.route('/api/fillblank',methods=['POST'])
 def fillBlank():
     if lock.locked() == False:
         lock.acquire()
         result = fillblank.fillBlank(model)
-        data={'code':200,'message':'success','data':result}
         lock.release()
-        return jsonify(data)
+        return jsonify({'code':200,'message':'success','data':result})
     else:
-        data={'code':201,'message':'sorry，此接口正在被其他人独霸，请稍后再试！'}
-        return jsonify(data),201
+        return jsonify({'code':201,'message':'sorry，此接口正在被其他人独霸，请稍后再试！'}),201
 
 @app.route('/api/generatestory',methods=['POST'])
 def generateStory():
     if lock.locked() == False:
         lock.acquire()
         result = story.generateStory(model)
-        data={'code':200,'message':'success','data':result}
         lock.release()
-        return jsonify(data)
+        return jsonify({'code':200,'message':'success','data':result})
     else:
-        data={'code':201,'message':'sorry，此接口正在被其他人独霸，请稍后再试！'}
-        return jsonify(data),201
+        return jsonify({'code':201,'message':'sorry，此接口正在被其他人独霸，请稍后再试！'}),201
 
 @app.route('/api/dialogue',methods=['POST'])
 def generateDialogue():
     if lock.locked() == False:
         lock.acquire()
         result = dialogue.dialogue(model)
-        data={'code':200,'message':'success','data':result}
         lock.release()
-        return jsonify(data)
+        return jsonify({'code':200,'message':'success','data':result})
     else:
         data={'code':201,'message':'sorry，此接口正在被其他人独霸，请稍后再试！'}
         return jsonify(data),201
