@@ -48,7 +48,7 @@ export default {
   methods: {
     loadmodel() {
       axios
-        .get("http://39.101.187.52:8080/api/loadmodel?key=2")
+        .get("/api/loadmodel?key=2")
         .then(res => {
           if (res.data.code == 200) {
             this.$nextTick(function() {
@@ -81,7 +81,7 @@ export default {
           presence_penalty: 0
         };
         axios
-          .post("http://39.101.187.52:8080/api/fillblank", param, {
+          .post("/api/fillblank", param, {
             headers: {
               "Content-Type": "application/json; charset=UTF-8"
             }
@@ -106,7 +106,7 @@ export default {
               });
               this.textResult = str;
               axios
-                .get("http://39.101.187.52:8080/api/gpuinfo", {
+                .get("/api/gpuinfo", {
                   headers: {
                     "Content-Type": "application/json; charset=UTF-8"
                   }

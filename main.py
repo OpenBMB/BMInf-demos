@@ -1,12 +1,16 @@
 import threading
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify, send_file
+from flask.helpers import send_from_directory
 import controller.gpu_info_controller as gpuinfo
 import controller.fill_blank_controller as fillblank
 import controller.generate_story_controller as story
 import controller.dialogue_controller as dialogue
 import bminf
+import os
 
-app = Flask(__name__)
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+app = Flask(__name__, static_url_path="", static_folder="statics")
 
 model = None
 #lock methods
@@ -42,8 +46,8 @@ def model_load():
     elif key == 3 and lock.locked() == False and lock_model.locked() == False:
         lock_model.acquire()
         model = None
-        print('loading eva2')
-        model = bminf.models.EVA2()
+        print('loading eva')
+        model = bminf.models.EVA()
         data={}
         data['code']=200
         data['message']='success'
@@ -118,6 +122,13 @@ def generateDialogue():
         data['message']='sorry，此接口正在被其他人独霸，请稍后再试！'
         return jsonify(data),201
 
+@app.route("/", methods=["GET"])
+def index():
+    return send_from_directory(
+        os.path.join(CURRENT_DIR, "statics"),
+        "index.html"
+    )
+
 if __name__ == '__main__':
     app.config['JSON_AS_ASCII']= False
-    app.run(host='0.0.0.0',port=8088)
+    app.run(host='0.0.0.0',port=8000)

@@ -73,7 +73,7 @@ export default {
   methods: {
     loadmodel() {
       axios
-        .get("http://39.101.187.52:8080/api/loadmodel?key=3")
+        .get("/api/loadmodel?key=3")
         .then(res => {
           if (res.data.code == 200) {
             this.$nextTick(function() {
@@ -119,7 +119,7 @@ export default {
         presence_penalty: 0
       };
       axios
-        .post("http://39.101.187.52:8080/api/dialogue", param, {
+        .post("/api/dialogue", param, {
           headers: {
             "Content-Type": "application/json; charset=UTF-8"
           }
@@ -128,7 +128,7 @@ export default {
           if (res.data.code == 200) {
             this.list1.push({ person: "B", say: res.data.data });
             axios
-              .get("http://39.101.187.52:8080/api/gpuinfo", {
+              .get("/api/gpuinfo", {
                 headers: {
                   "Content-Type": "application/json; charset=UTF-8"
                 }

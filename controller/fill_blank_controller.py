@@ -10,7 +10,7 @@ def fillBlank(model):
     temperature1 = request.json.get('temperature')
     frequency_penalty1 = request.json.get('frequency_penalty')
     presence_penalty1 = request.json.get('presence_penalty')
-    result = model.generate(text,
+    result = model.fill_blank(text,
                             top_p = top_p1,
                             top_n = top_n1,
                             temperature = temperature1,

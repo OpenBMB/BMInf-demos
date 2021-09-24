@@ -58,7 +58,7 @@ export default {
   methods: {
     loadmodel(){
       axios
-        .get("http://39.101.187.52:8080/api/loadmodel?key=1")
+        .get("/api/loadmodel?key=1")
       .then(res => {
        if (res.data.code == 200) {
          //setInterval(this.getStatus, 10000);
@@ -79,7 +79,7 @@ export default {
     },
     getStatus(){
       axios
-        .get("http://39.101.187.52:8080/api/loadmodel?key=1")
+        .get("/api/loadmodel?key=1")
       .then(res => {
        if (res.data.code == 200) {
           this.$nextTick(function () {
@@ -142,7 +142,7 @@ export default {
       //       });
       
         axios
-          .post("http://39.101.187.52:8080/api/generatestory", param)
+          .post("/api/generatestory", param)
           .then(res => {
             if (res.data.code == 200) {
                 let list = res.data.data.map(item => {
@@ -168,7 +168,7 @@ export default {
       this.searchContent = this.textInit + item.value;
       //this.selectData = item.value
       axios
-        .get("http://39.101.187.52:8080/api/gpuinfo",{
+        .get("/api/gpuinfo",{
           headers: {
             "Content-Type": "application/json; charset=UTF-8"
           }

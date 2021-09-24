@@ -1,4 +1,3 @@
-import psutil
 import pynvml
 
 def gpu_info():
@@ -12,7 +11,6 @@ def gpu_info():
     memory_rate = round(utilization.memory,4)      #内存使用率
 
     pynvml.nvmlShutdown()
-    #memory_rate = psutil.virtual_memory().percent
 
     rate={}
     rate['memory_rate']= memory_rate

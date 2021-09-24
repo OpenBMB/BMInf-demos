@@ -23,7 +23,7 @@ export default {
   methods: {
     init() {
       axios
-        .get("http://39.101.187.52:8080/api/gpuinfo",{
+        .get("/api/gpuinfo",{
           headers: {
             "Content-Type": "application/json; charset=UTF-8"
           }
