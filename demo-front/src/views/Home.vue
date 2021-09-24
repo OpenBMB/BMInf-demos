@@ -28,16 +28,10 @@
             <span slot="title">{{ k.name }}</span>
             </el-menu-item>
         </el-menu>
-        <div :class="[{ left: isCollapse, left2: !isCollapse }]" @click="isC">
-          <i v-show="isCollapse" class="el-icon-s-fold"></i>
-          <i v-show="!isCollapse" class="el-icon-s-unfold"></i>
-          <span v-show="isCollapse">收缩</span>
-          <span v-show="!isCollapse">展开</span>
-        </div>
       </div>
       <div class="cont">
-        <div class="page">
-          <router-view></router-view>
+        <div id="page-content">
+          <router-view style="margin: auto; padding: 40px 0;"></router-view>
         </div>
       </div>
     </div>
@@ -45,9 +39,7 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import axios from "axios"
-// const url = CONFIG
+import Header from "@/components/header"
 export default {
   data() {
     return {
@@ -78,32 +70,43 @@ export default {
       {
         id: "1",
         name: "文本填空",
-        sorted: 1,
         icon: 'el-icon-edit-outline',
         path: "/text"
       },
       {
         id: "2",
         name: "智能对话",
-        sorted: 1,
         icon: 'el-icon-chat-dot-square',
         path: "/dialog"
       },
       {
         id: "3",
         name: "生成故事",
-        sorted: 1,
         icon: 'el-icon-reading',
         path: "/story"
       }
     ];
     // 默认点击第一个
     this.$router.push(this.menu[0].path);
+  },
+  components: {
+    Header
   }
 };
 </script>
 <style scoped lang="scss">
 @import "./secondarylist/style/home.scss";
+.head {
+  width: 100%;
+}
+#page-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100vw - 225px);
+  height: calc(100vh - 80px);
+  overflow-y: scroll;
+}
 .topInfo {
   text-align: center;
   .logo {
@@ -149,9 +152,6 @@ export default {
   display: inline-block;
   width: 45px;
 }
-// /deep/ .el-menu-vertical:not(.el-menu--collapse) {
-//   width: 200px;
-// }
 /deep/ .el-icon-s-fold,.el-icon-s-unfold {
   font-size: 16px;
   vertical-align: text-bottom;
@@ -167,6 +167,5 @@ export default {
 }
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 225px;
-  min-height: 400px;
 }
 </style>

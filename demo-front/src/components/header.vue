@@ -2,9 +2,9 @@
   <div class="head">
     <div class="right">
       <ul class="my">
-        <li class="img">内存使用率<span>{{$store.state.memory_rate}}</span>%</li>
-        <li class="img">GPU使用率<span>{{$store.state.gpu_rate}}</span>%</li>
-        <li class="img">显存使用率<span>{{$store.state.meme_used_rate}}</span>%</li>
+        <li class="img">内存使用率<span>{{memory_rate}}</span>%</li>
+        <li class="img">GPU使用率<span>{{gpu_rate}}</span>%</li>
+        <li class="img">显存使用率<span>{{meme_used_rate}}</span>%</li>
       </ul>
     </div>
   </div>
@@ -12,34 +12,33 @@
 
 <script>
 import axios from "axios";
-import Vue from 'vue'
 export default {
-  data() {
-    return {};
-  },
+  data: () => ({
+    memory_rate: 0,
+    gpu_rate: 0,
+    meme_used_rate: 0,
+
+    timer_handle : null
+  }),
   created() {
-    this.init()
+    this.get_gpu_info();
+    this.timer_handle = setInterval(this.get_gpu_info, 3000);
+  },
+  destroyed() {
+    clearInterval(this.timer_handle);
   },
   methods: {
-    init() {
-      axios
-        .get("/api/gpuinfo",{
-          headers: {
-            "Content-Type": "application/json; charset=UTF-8"
-          }
-        })
+    get_gpu_info() {
+      axios.get("/api/gpuinfo")
       .then(res => {
-       if (res.data.code == 200) {
-        // this.gpu_rate = res.data.data.gpu_rate
-        // this.meme_used_rate = res.data.data.meme_used_rate
-        // this.memory_rate = res.data.data.memory_rate
-        this.$store.state.gpu_rate = res.data.data.gpu_rate
-        this.$store.state.meme_used_rate = res.data.data.meme_used_rate
-        this.$store.state.memory_rate = res.data.data.memory_rate
-       }
+        if (res.data.code == 200) {
+          this.gpu_rate = res.data.data.gpu_rate;
+          this.meme_used_rate = res.data.data.meme_used_rate;
+          this.memory_rate = res.data.data.memory_rate;
+        }
       })
-      .catch(error => {
-        console.log("error init." + error);
+      .catch(err => {
+        console.error(err);
       });
     }
   }
@@ -49,10 +48,12 @@ export default {
 <style lang="scss" scoped>
 .head {
   border-bottom: 1px solid #ededed;
-  width: 92% !important;
+  width: 100%;
   height: 80px;
-  margin-left: 250px;
-  margin-right: -250px;
+  z-index: 500;
+  position: relative;
+  background-color: #FFF;
+
   // background-color: #0E1E37;
   // box-shadow: 0px 3px 6px rgba(20, 90, 254, 0.04);
   box-sizing: border-box;

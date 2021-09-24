@@ -5,9 +5,6 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || '中科闻歌' // page title
-
-// port = 9528 npm run dev OR npm run dev --port = 9528
 const port = process.env.port || process.env.npm_config_port || 8080 // dev port
 
 // All configuration item explanations can be find in https://cli.vuejs.org/config/
@@ -34,26 +31,17 @@ module.exports = {
       errors: true
     },
    
-    // port: 8080, // 端口
-    // https: false, // 启用https
     proxy: {
-      '/proxy': {
-          // 目标 API 地址
-          target: "http://10.10.0.32:8080/ai/", //真实的api地址
-          // 如果要代理 websockets
-          // ws: true,
-          // 将主机标头的原点更改为目标URL
+      '/api': {
+          target: "http://166.111.5.239:29100/",
           changeOrigin: true,
-          pathRewrite: {
-              '^/proxy': '',
-          },
       },
     }
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
-    name: name, 
+    name: 'BMInf Demos', 
     resolve: {
       modules: [path.resolve('node_modules'), 'node_modules'],
       alias: {

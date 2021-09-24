@@ -1,19 +1,16 @@
 <template>
   <div class="talk_con">
-    <div v-show="loading === 1" class="load">
-      <img src="../../assets/images/load.gif" />
+    <div v-if="loading" style="text-align: center;">
+      <img src="@/assets/images/load.gif" />
       <div style="margin-bottom:16px">模型正在加载中...</div>
       <div>首次加载时间较长（可能会需要十分钟），请耐心等待！</div>
     </div>
-    <div v-show="loading === 3" class="load">
-      <img src="../../assets/images/fail.jpg" />
-    </div>
-    <div v-show="loading === 2">
+    <div v-else>
       <div class="title">
         <span>智能对话</span>
         <span class="clear" @click="clearData()">清空聊天记录</span>
       </div>
-      <div class="talk_show" id="words">
+      <div class="talk_show" id="words" ref="chatbox">
         <div
           v-for="(item, index) in list1"
           :key="index"
@@ -27,13 +24,8 @@
             ><i class="el-icon-user"></i
           ></span>
         </div>
-        <!-- <div class="btalk"><span>B说：还没呢，你呢？</span></div> -->
       </div>
-      <div class="talk_input">
-        <!-- <select class="whotalk" id="who" v-model="sel1">
-        <option value="0">A说：</option>
-        <option value="1">B说：</option>
-      </select> -->
+      <div class="talk_input" v-loading="query_loading">
         <input
           type="text"
           class="talk_word"
@@ -41,7 +33,6 @@
           v-model="text1"
           @keyup.enter="fnAdd"
         />
-        <!-- 绑定单击监听,把value传到vue的list1中 -->
         <input
           type="button"
           value="发送"
@@ -64,96 +55,92 @@ export default {
       list1: [],
       sel1: 0,
       text1: "",
-      loading: 1
+      loading: true,
+      loading_handle: null,
+      loading_query: false,
+
+      query_loading: false,
     };
   },
   created() {
-    this.loadmodel();
+    this.loading = true;
+    this.loading_handle = setInterval(this.loadmodel, 100);
+  },
+  destroyed() {
+    if (this.loading_handle) clearInterval(this.loading_handle);
   },
   methods: {
     loadmodel() {
-      axios
-        .get("/api/loadmodel?key=3")
-        .then(res => {
-          if (res.data.code == 200) {
-            this.$nextTick(function() {
-              this.loading = 2;
-            });
-          } else {
-            this.$nextTick(() => {
-              this.loading = 3;
-            });
-          }
-        })
-        .catch(error => {
-          this.$nextTick(() => {
-            this.loading = 3;
+      if (!this.loading_query) {
+        this.loading_query = true;
+        axios
+          .get("/api/loadmodel?key=3")
+          .then(res => {
+            if (res.data.code == 200) {
+              this.loading = false;
+              clearInterval(this.loading_handle);
+              this.loading_handle = null;
+            } else {
+              // retry
+            }
+            this.loading_query = false;
+          })
+          .catch(error => {
+            this.$message.error("模型加载失败，请重试！");
+            console.error(error);
+            // retry
+            this.loading_query = false;
           });
-        });
+      }
     },
     fnAdd: function() {
-      if (this.text1 == "") {
-        alert("请输入内容!");
-        return;
-      }
+      if (!this.query_loading) {
+        this.query_loading = true;
+        if (this.text1 == "") {
+          alert("请输入内容!");
+          return;
+        }
 
-      // 列表追加数据push()
-      // this.list1.push({ person: this.sel1 == 0 ? "A" : "B", say: this.text1 });
-      this.list1.push({ person: "A", say: this.text1 });
-      // 每次输入内容后,清空输入栏数据
-      this.text1 = "";
+        this.list1.push({ person: "A", say: this.text1 });
+        this.text1 = "";
 
-      // { person: "A", say: "吃饭了吗？" },
-      //   { person: "B", say: "还没呢，你呢？" }
-      let listArr = [];
-      this.list1.forEach(v => {
-        listArr.push(v.say);
-      });
-      let param = {
-        text: JSON.stringify(listArr), //"['你好','你好','你在干嘛']"
-        max_tokens: 128,
-        top_p: 1.0,
-        top_n: 10,
-        temperature: 0.9,
-        frequency_penalty: 0,
-        presence_penalty: 0
-      };
-      axios
-        .post("/api/dialogue", param, {
-          headers: {
-            "Content-Type": "application/json; charset=UTF-8"
-          }
-        })
-        .then(res => {
-          if (res.data.code == 200) {
-            this.list1.push({ person: "B", say: res.data.data });
-            axios
-              .get("/api/gpuinfo", {
-                headers: {
-                  "Content-Type": "application/json; charset=UTF-8"
-                }
-              })
-              .then(res => {
-                if (res.data.code == 200) {
-                  this.$store.state.gpu_rate = res.data.data.gpu_rate;
-                  this.$store.state.meme_used_rate =
-                    res.data.data.meme_used_rate;
-                  this.$store.state.memory_rate = res.data.data.memory_rate;
-                }
-              })
-              .catch(error => {
-                console.log("error init." + error);
-              });
-          } else {
-            this.$message({
-              type: "info",
-              message: res.data.message
-            });
-          }
-        })
-        .catch(error => {
-          console.log("error init." + error);
+        let listArr = [];
+        this.list1.forEach(v => {
+          listArr.push(v.say);
         });
+        let param = {
+          text: listArr,
+          max_tokens: 128,
+          top_p: 1.0,
+          top_n: 10,
+          temperature: 0.9,
+          frequency_penalty: 0,
+          presence_penalty: 0
+        };
+        
+        this.$nextTick(() => {
+          let dom = this.$refs.chatbox;
+          dom.scrollTo(0, dom.scrollTopMax);
+        });
+
+        axios
+          .post("/api/dialogue", param)
+          .then(res => {
+            this.query_loading = false;
+            if (res.data.code == 200) {
+              this.list1.push({ person: "B", say: res.data.data });
+            }
+            this.$nextTick(() => {
+              let dom = this.$refs.chatbox;
+              dom.scrollTo(0, dom.scrollTopMax);
+            })
+          })
+          .catch(error => {
+            this.query_loading = false;
+            this.$message.error("调用模型失败！");
+            console.log(error);
+          });
+      }
     },
     clearData() {
       this.list1 = [];
@@ -164,21 +151,14 @@ export default {
 
 <style lang="scss" scoped>
 .talk_con {
-  width: 60%;
-  height: 650px;
-  margin: 0 auto;
-  .load {
-    margin-top: 100px;
-    div {
-      text-align: center;
-    }
-  }
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
   .title {
     font-family: PingFangSC-Medium;
     font-size: 16px;
     color: #333333;
     font-weight: bold;
-    margin: 80px 0px 0px 0px;
     text-align: left;
     .clear {
       float: right;
@@ -193,10 +173,10 @@ export default {
 .talk_show {
   // width: 580px;
   width: 100%;
-  height: 560px;
+  height: 450px;
   // border: 1px solid #666;
   // background: #fff;
-  overflow: auto;
+  overflow-y: scroll;
   border: 1px solid #dcdfe6;
   margin: 20px auto 0;
   background: #f9f9f9;

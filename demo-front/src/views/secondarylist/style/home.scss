@@ -16,23 +16,17 @@
     flex-direction: column;
   }
   
-  .head{
-    width: 92% !important;
-    height: 80px;
-  }
   .content{
    flex:1;
    display: flex;
   }
   .nav{
-    //  width: 225px;
-     box-shadow: 2px 0 20px 0 rgba(0,0,0,0.10);
-     position: absolute;
-      top: 0;
-      z-index: 1000;
-      height: 100%;
-    // height: 100%; 
-    /* background-color:#1A53B1; */
+    box-shadow: 2px 0 20px 0 rgba(0,0,0,0.10);
+    position: absolute;
+    top: 0;
+    z-index: 1000;
+    height: 100%;
+    background-color: #FFF;
   }
   /deep/ .el-icon-arrow-down:before{
     content:"\e791";
