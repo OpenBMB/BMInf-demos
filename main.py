@@ -59,6 +59,8 @@ def gpu_info():
 
 @app.route('/api/fillblank',methods=['POST'])
 def fillBlank():
+    if current_key != 2:
+        return jsonify({'code':202,'message':'模型已经失效，请刷新后重新加载'}),201
     if lock.locked() == False:
         lock.acquire()
         result = fillblank.fillBlank(model)
@@ -69,6 +71,8 @@ def fillBlank():
 
 @app.route('/api/generatestory',methods=['POST'])
 def generateStory():
+    if current_key != 1:
+        return jsonify({'code':202,'message':'模型已经失效，请刷新后重新加载'}),201
     if lock.locked() == False:
         lock.acquire()
         result = story.generateStory(model)
@@ -79,14 +83,15 @@ def generateStory():
 
 @app.route('/api/dialogue',methods=['POST'])
 def generateDialogue():
+    if current_key != 3:
+        return jsonify({'code':202,'message':'模型已经失效，请刷新后重新加载'}),201
     if lock.locked() == False:
         lock.acquire()
         result = dialogue.dialogue(model)
         lock.release()
         return jsonify({'code':200,'message':'success','data':result})
     else:
-        data={'code':201,'message':'sorry，此接口正在被其他人独霸，请稍后再试！'}
-        return jsonify(data),201
+        return jsonify({'code':201,'message':'sorry，此接口正在被其他人独霸，请稍后再试！'}),201
 
 @app.route("/", methods=["GET"])
 def index():
