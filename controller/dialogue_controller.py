@@ -1,11 +1,9 @@
 from flask import request
-import bminf
-
+import json
 
 def dialogue(model):
     text = request.json.get('text')
-    list1 = eval(text)
-    print(list1)
+    list1 = json.loads(text)
     max_tokens1 = request.json.get('max_tokens')
     top_p1 = request.json.get('top_p')
     top_n1 = request.json.get('top_n')

@@ -1,5 +1,5 @@
 import threading
-from flask import Flask,request,jsonify, send_file
+from flask import Flask,request,jsonify
 from flask.helpers import send_from_directory
 import controller.gpu_info_controller as gpuinfo
 import controller.fill_blank_controller as fillblank
