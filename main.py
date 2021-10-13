@@ -1,10 +1,9 @@
 import threading
 from flask import Flask,request,jsonify
 from flask.helpers import send_from_directory
-import controller.gpu_info_controller as gpuinfo
-import controller.fill_blank_controller as fillblank
-import controller.generate_story_controller as story
-import controller.dialogue_controller as dialogue
+import gpu_info as gpuinfo
+import demo_adapter as adapter
+import demo_dict as dic
 import bminf
 import os
 
@@ -49,45 +48,21 @@ def model_load():
             model = bminf.models.EVA()
             lock.release()
         current_key = key
-        return jsonify({'code':200,'message':'success'})
-        
+        return jsonify({'code':200,'message':'success'})        
 
 @app.route('/api/gpuinfo',methods=['GET'])
 def gpu_info():
     rate = gpuinfo.gpu_info()
     return jsonify({'code':200,'message':'success','data':rate})
 
-@app.route('/api/fillblank',methods=['POST'])
-def fillBlank():
-    if current_key != 2:
+@app.route('/api/<demoname>',methods=['POST'])
+def demo(demoname):
+    if current_key != dic.demodict(demoname):
         return jsonify({'code':202,'message':'模型已经失效，请刷新后重新加载'}),201
     if lock.locked() == False:
         lock.acquire()
-        result = fillblank.fillBlank(model)
-        lock.release()
-        return jsonify({'code':200,'message':'success','data':result})
-    else:
-        return jsonify({'code':201,'message':'sorry，此接口正在被其他人独霸，请稍后再试！'}),201
-
-@app.route('/api/generatestory',methods=['POST'])
-def generateStory():
-    if current_key != 1:
-        return jsonify({'code':202,'message':'模型已经失效，请刷新后重新加载'}),201
-    if lock.locked() == False:
-        lock.acquire()
-        result = story.generateStory(model)
-        lock.release()
-        return jsonify({'code':200,'message':'success','data':result})
-    else:
-        return jsonify({'code':201,'message':'sorry，此接口正在被其他人独霸，请稍后再试！'}),201
-
-@app.route('/api/dialogue',methods=['POST'])
-def generateDialogue():
-    if current_key != 3:
-        return jsonify({'code':202,'message':'模型已经失效，请刷新后重新加载'}),201
-    if lock.locked() == False:
-        lock.acquire()
-        result = dialogue.dialogue(model)
+        req_json = request.json
+        result = adapter.demo_adapter(demoname, model, req_json)
         lock.release()
         return jsonify({'code':200,'message':'success','data':result})
     else:
