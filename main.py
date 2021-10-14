@@ -3,7 +3,7 @@ from flask import Flask,request,jsonify
 from flask.helpers import send_from_directory
 import gpu_info as gpuinfo
 import demo_adapter as adapter
-import demo_dict as dic
+import demotomodel as dm 
 import bminf
 import os
 
@@ -57,7 +57,7 @@ def gpu_info():
 
 @app.route('/api/<demoname>',methods=['POST'])
 def demo(demoname):
-    if current_key != dic.demodict(demoname):
+    if current_key != dm.demoToModel(demoname):
         return jsonify({'code':202,'message':'模型已经失效，请刷新后重新加载'}),201
     if lock.locked() == False:
         lock.acquire()

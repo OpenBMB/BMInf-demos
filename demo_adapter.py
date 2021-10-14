@@ -6,6 +6,6 @@ def demo_adapter(demoname, model, req_json):
     for i in range(len(package)):
         if package[i] == demoname:
             path='demos.'+package[i]
-            module = importlib.import_module(package[i])
+            module = importlib.import_module(path)
             return module.demoImpl(model, req_json)
             
